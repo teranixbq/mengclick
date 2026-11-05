@@ -6,7 +6,7 @@ A lightweight Chrome extension for automatic clicking in individual tabs. No dep
 
 1. Open `chrome://extensions` in Chrome.
 2. Enable **Developer mode**.
-3. Select **Load unpacked**, then choose this project folder.
+3. Select **Load unpacked**, then choose the `extension/` folder. For a release ZIP, extract it first and select the extracted folder containing `manifest.json`.
 
 ## Use
 
@@ -23,4 +23,10 @@ Changing the interval or mode stops clicking. Active sessions attempt to resume 
 
 Chrome can throttle timers in background tabs. Clicks are synthetic and may be ignored by some sites. Chrome internal pages and the Chrome Web Store cannot be used. A recreated element can only be found again if its generated selector still identifies it. Element selection and clicking do not support targets inside iframes or shadow roots. Mouse mode needs a known cursor position inside the page before its first click.
 
-See [CONTEXT.md](CONTEXT.md) for the agreed requirements.
+## Project structure
+
+- `extension/` — unpacked Chrome extension and assets.
+- `docs/` — project requirements and release notes template.
+- `dist/` — generated release archives.
+
+See [CONTEXT.md](docs/CONTEXT.md) for the agreed requirements and [RELEASE_TEMPLATE.md](docs/RELEASE_TEMPLATE.md) for release notes.
