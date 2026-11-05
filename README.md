@@ -30,3 +30,7 @@ Chrome can throttle timers in background tabs. Clicks are synthetic and may be i
 - `dist/` — generated release archives.
 
 See [CONTEXT.md](docs/CONTEXT.md) for the agreed requirements and [RELEASE_TEMPLATE.md](docs/RELEASE_TEMPLATE.md) for release notes.
+
+## Releasing
+
+The GitHub Actions release workflow packages `extension/` and publishes a GitHub Release when a version tag such as `v1.0.0` is pushed. The tag must match the version in `extension/manifest.json`. It can also be run manually from the Actions tab with an existing tag after the workflow is on the default branch. The workflow needs permission to write repository contents. Edit `docs/RELEASE_TEMPLATE.md` before tagging to customize the release notes.
