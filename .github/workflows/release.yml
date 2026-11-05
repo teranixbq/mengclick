@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag (for example, v1.0.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Verify tag is on main
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor HEAD FETCH_HEAD || {
+            printf '%s\n' 'Release tag must point to a commit on main.'
+            exit 1
+          }
+
+      - name: Validate version and package extension
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const tag = process.env.RELEASE_TAG;
+          const version = JSON.parse(fs.readFileSync('extension/manifest.json', 'utf8')).version;
+          if (!/^v\d+\.\d+\.\d+(?:\.\d+)?$/.test(tag) || tag !== `v${version}`) {
+            throw new Error(`Release tag ${tag} must match manifest version v${version}`);
+          }
+          const template = fs.readFileSync('docs/RELEASE_TEMPLATE.md', 'utf8');
+          const notes = template.replaceAll('vX.Y.Z', tag)
+            .replace(/\*\*Full changelog:\*\*.*\n?/g, '')
+            .replace('- Describe the most important changes.', '- See the repository history for changes in this version.')
+            .replace(/### (Added|Fixed|Changed)\n\n- Describe[^\n]*\n\n/g, '');
+          fs.writeFileSync('release-notes.md', notes);
+          NODE
+          (cd extension && zip -qr "../mengclick-${RELEASE_TAG}.zip" .)
+          unzip -t "mengclick-${RELEASE_TAG}.zip"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" "mengclick-${RELEASE_TAG}.zip" \
+            --verify-tag --title "Mengclick ${RELEASE_TAG}" --notes-file release-notes.md

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mengclick</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="header">
+      <div class="brand"><img class="brand-icon" src="assets/mengclick_logo_square.svg" alt=""><div><h1>Mengclick</h1><p>YOUR LIGHTWEIGHT AUTO CLICKER</p></div></div>
+      <span id="status" class="status"><span></span> Ready</span>
+    </header>
+    <div class="intro"><p class="eyebrow">AUTOMATE THE LITTLE THINGS</p><h2>Make every click<br><em>count.</em></h2><p>Set your target and get back to what matters.</p></div>
+    <section class="controls" aria-label="Click settings">
+      <div class="section-heading"><span>Click mode</span><span class="subtle">Choose a target</span></div>
+      <div class="mode-grid">
+        <button class="mode active" id="mouse-mode" type="button" aria-pressed="true"><span class="mode-icon" aria-hidden="true">↖</span><span><strong>Mouse</strong><small>Follow cursor</small></span><span class="radio"></span></button>
+        <button class="mode" id="element-mode" type="button" aria-pressed="false"><span class="mode-icon" aria-hidden="true">◎</span><span><strong>Element</strong><small>Pick a target</small></span><span class="radio"></span></button>
+      </div>
+      <label class="section-heading interval-label" for="interval"><span>Click interval</span><span class="subtle">Minimum 1 second</span></label>
+      <div class="interval"><input id="interval" type="number" min="1" step="any" value="5" aria-describedby="interval-error"><span>seconds</span></div>
+      <p id="interval-error" class="error" role="alert"></p>
+      <button id="start" class="primary" type="button">Start clicking <span aria-hidden="true">↗</span></button>
+      <button id="stop" class="stop" type="button" hidden>Stop clicking <span aria-hidden="true">■</span></button>
+      <p id="hint" class="hint">Move your cursor over the page to set the target.</p>
+      <div class="session" aria-label="Current session">
+        <div><span>CLICKS</span><strong id="click-count">0</strong></div>
+        <div><span>ELAPSED TIME</span><strong id="elapsed">00:00:00</strong></div>
+        <div class="reset-section"><span>RESET</span><button id="reset-clicks" class="reset-clicks" type="button" aria-label="Reset click count" title="Reset click count">↻</button></div>
+      </div>
+    </section>
+    <footer><span><i></i> WORKS IN THE BACKGROUND</span><span>PER TAB</span></footer>
+  </main>
+</body>
+</html>
