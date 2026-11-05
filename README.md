@@ -33,4 +33,4 @@ See [CONTEXT.md](docs/CONTEXT.md) for the agreed requirements and [RELEASE_TEMPL
 
 ## Releasing
 
-The GitHub Actions release workflow packages `extension/` and publishes a GitHub Release when a version tag such as `v1.0.0` is pushed. The tag must match the version in `extension/manifest.json`. It can also be run manually from the Actions tab with an existing tag after the workflow is on the default branch. The workflow needs permission to write repository contents. Edit `docs/RELEASE_TEMPLATE.md` before tagging to customize the release notes.
+The GitHub Actions release workflow packages `extension/` and publishes a GitHub Release when a version tag such as `v1.0.0` is pushed. The tag must point to a commit already on `main` and match the version in `extension/manifest.json`. Merging into `main` alone does not create a release; push the version tag after merging. The workflow can also be run manually from the Actions tab with an existing tag after the workflow is on the default branch. It needs permission to write repository contents. Edit `docs/RELEASE_TEMPLATE.md` before tagging to customize the release notes.
