@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <!-- Background Gradient: Deep Obsidian Midnight -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c0f07"/>
+      <stop offset="60%" stop-color="#0f0703"/>
+      <stop offset="100%" stop-color="#060301"/>
+    </linearGradient>
+    
+    <!-- Primary Paw-Cursor Gradient: Radiant Sunset Amber -->
+    <linearGradient id="pawGrad" x1="200" y1="120" x2="824" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff9838"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+
+    <!-- Inner Core & Accent Gradient -->
+    <linearGradient id="coreGrad" x1="450" y1="520" x2="574" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+
+    <!-- Outer Rim Glow -->
+    <filter id="softGlow" x="0" y="0" width="1024" height="1024" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="28" stdDeviation="40" flood-color="#f97316" flood-opacity="0.45"/>
+    </filter>
+    <filter id="coreGlow" x="0" y="0" width="1024" height="1024" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#f97316" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Square Base with Precise Apple/Chrome Squircle Radius -->
+  <rect width="1024" height="1024" rx="230" fill="url(#bgGrad)"/>
+  <rect x="6" y="6" width="1012" height="1012" rx="224" stroke="rgba(249, 115, 22, 0.28)" stroke-width="12"/>
+
+  <!-- Subtle Inner Ambient Reflection -->
+  <circle cx="512" cy="180" r="320" fill="rgba(249, 115, 22, 0.06)" filter="blur(60px)"/>
+
+  <!-- 3 Toe Pads (Cakar Kucing Atas) -->
+  <circle cx="340" cy="270" r="76" fill="url(#pawGrad)" filter="url(#softGlow)"/>
+  <circle cx="512" cy="205" r="86" fill="url(#pawGrad)" filter="url(#softGlow)"/>
+  <circle cx="684" cy="270" r="76" fill="url(#pawGrad)" filter="url(#softGlow)"/>
+
+  <!-- Toe Pad Specular Highlights (Glaze Effect) -->
+  <ellipse cx="325" cy="250" rx="24" ry="14" transform="rotate(-25 325 250)" fill="rgba(255,255,255,0.45)"/>
+  <ellipse cx="500" cy="185" rx="28" ry="16" transform="rotate(-15 500 185)" fill="rgba(255,255,255,0.5)"/>
+  <ellipse cx="670" cy="250" rx="24" ry="14" transform="rotate(-25 670 250)" fill="rgba(255,255,255,0.45)"/>
+
+  <!-- Main Center Pad Fused with Precision Cursor Arrow -->
+  <!-- Outer White Silhouette Body -->
+  <path d="M512 390 
+           C396 390 318 470 318 580 
+           C318 662 370 732 448 760 
+           L512 855 
+           L576 760 
+           C654 732 706 662 706 580 
+           C706 470 628 390 512 390 Z" 
+        fill="#FFFFFF" filter="url(#softGlow)"/>
+
+  <!-- Inner Amber Contrast Inlay -->
+  <path d="M512 435 
+           C424 435 362 498 362 585 
+           C362 648 402 702 464 724 
+           L512 795 
+           L560 724 
+           C622 702 662 648 662 585 
+           C662 498 600 435 512 435 Z" 
+        fill="url(#pawGrad)"/>
+
+  <!-- Central Target / Radar Click Core (Trigger Point) -->
+  <circle cx="512" cy="575" r="62" fill="#FFFFFF" filter="url(#coreGlow)"/>
+  <circle cx="512" cy="575" r="38" fill="url(#pawGrad)"/>
+  <circle cx="512" cy="575" r="16" fill="#FFFFFF"/>
+</svg>
